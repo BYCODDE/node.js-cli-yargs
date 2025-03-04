@@ -1,4 +1,4 @@
-import { beforeEach, expect, jest } from "@jest/globals";
+import { beforeEach, expect, jest, test } from "@jest/globals";
 jest.unstable_mockModule("../src/db.js", () => ({
   insertDB: jest.fn(),
   getDB: jest.fn(),
@@ -25,3 +25,17 @@ test("newNote inserts data to db", async () => {
   const result = await newNote(note.content);
   expect(result).toEqual(note);
 });
+
+test("getallNotes returns data from db", async () => {
+  const notes = {
+    content: ["test note", "test note 2"],
+  };
+
+  getDB.mockResolvedValue({ notes });
+
+  const result = await getallNotes();
+  expect(result).toEqual(notes);
+});
+
+
+
