@@ -29,9 +29,9 @@ export const removeNote = async (id) => {
     await saveDB({ notes: newNotes });
     return id;
   }
-  return "Invalid ID, try again!";
 };
 
 export const removeAllNotes = () => {
   saveDB({ notes: [] });
+  return { notes: [] };
 };
