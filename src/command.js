@@ -7,6 +7,7 @@ import {
   removeAllNotes,
   removeNote,
 } from "./notes.js";
+import { start } from "./server.js";
 
 yargs(hideBin(process.argv))
   .command(
@@ -82,8 +83,9 @@ yargs(hideBin(process.argv))
         default: 3000,
       });
     },
-    (argv) => {
-      console.log(argv);
+    async(argv) => {
+      const notes = await getallNotes();
+      start(notes);
     }
   )
 
